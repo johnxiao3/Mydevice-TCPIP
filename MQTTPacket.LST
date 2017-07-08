@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   MQTTPACKET                                                            07/08/2017 17:20:26 PAGE 1   
+C51 COMPILER V9.00   MQTTPACKET                                                            07/08/2017 18:49:40 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE MQTTPACKET
@@ -62,7 +62,7 @@ line level    source
   53          {
   54                  unsigned char c;
   55                  int multiplier = 1;
-C51 COMPILER V9.00   MQTTPACKET                                                            07/08/2017 17:20:26 PAGE 2   
+C51 COMPILER V9.00   MQTTPACKET                                                            07/08/2017 18:49:40 PAGE 2   
 
   56                  int len = 0;
   57          #define MAX_NO_OF_REMAINING_LENGTH_BYTES 4

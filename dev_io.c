@@ -91,10 +91,11 @@ Restart:
 	ABCShow();
 	Delay(10000);
 
-Reconnect:
+
 	ssd1306_initalize();
 	ssd1306_clear();
-	ssd1306_printf("|   Mydevices   |  TCP IP Mode  | Connect Server");
+	ssd1306_printf(" Connecting...");
+Reconnect:
 	count=0;
 	Serial0_SendString("AT+CIPSTART=\"TCP\",\"192.168.2.3\",5000");
 	Serial0_SendChar(0x0d);
@@ -129,7 +130,7 @@ Reconnect:
 	//temp_dataT[0]=count;ABC1Show();Delay(30000);
 	count=0;
 
-	Delay(10000);	
+	//Delay(10000);	
 
 	//Serial0_SendString("Hahah");
 	/*Serial0_SendString("AT+CWJAP=\"zhiyong_yang\",\"26996014\"");

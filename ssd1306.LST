@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   SSD1306                                                               07/08/2017 17:20:26 PAGE 1   
+C51 COMPILER V9.00   SSD1306                                                               07/08/2017 18:49:40 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE SSD1306
@@ -62,7 +62,7 @@ line level    source
   53              0x00,0x00,0x41,0x7F,0x7F,0x41,0x00,0x00,       // ASCII -  73
   54              0x00,0x30,0x70,0x41,0x41,0x7F,0x3F,0x01,       // ASCII -  74
   55              0x00,0x7F,0x7F,0x08,0x1C,0x77,0x63,0x41,       // ASCII -  75
-C51 COMPILER V9.00   SSD1306                                                               07/08/2017 17:20:26 PAGE 2   
+C51 COMPILER V9.00   SSD1306                                                               07/08/2017 18:49:40 PAGE 2   
 
   56              0x00,0x41,0x7F,0x7F,0x41,0x40,0x60,0x70,       // ASCII -  76
   57              0x00,0x7F,0x7E,0x0C,0x18,0x0C,0x7E,0x7F,       // ASCII -  77
@@ -126,7 +126,7 @@ line level    source
  115          void writeCommand(unsigned char cmd)
  116          {
  117   1              I2CStart();
-C51 COMPILER V9.00   SSD1306                                                               07/08/2017 17:20:26 PAGE 3   
+C51 COMPILER V9.00   SSD1306                                                               07/08/2017 18:49:40 PAGE 3   
 
  118   1              I2CSend(0x78);  //Slave address,SA0=0
  119   1              I2CSend(0x00);  //write command
@@ -190,7 +190,7 @@ line level    source
  176   1          writeCommand(SSD1306_SETSTARTLINE | 0x0); // line #0
  177   1              writeCommand(0xb0);
  178   1              
-C51 COMPILER V9.00   SSD1306                                                               07/08/2017 17:20:26 PAGE 4   
+C51 COMPILER V9.00   SSD1306                                                               07/08/2017 18:49:40 PAGE 4   
 
  179   1          for (i=0; i<1024; i++) 
  180   1          {
@@ -255,7 +255,7 @@ MODULE INFORMATION:   STATIC OVERLAYABLE
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
-C51 COMPILER V9.00   SSD1306                                                               07/08/2017 17:20:26 PAGE 5   
+C51 COMPILER V9.00   SSD1306                                                               07/08/2017 18:49:40 PAGE 5   
 
 
 C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)
