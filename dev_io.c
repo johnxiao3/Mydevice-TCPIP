@@ -47,125 +47,6 @@ extern unsigned char count;
 unsigned char Lig=1;
 unsigned char CountineCheck=0;
 
-void Publish0(void)
-{
-	unsigned char len=0;
-	for(len=0;len<93;len++)
-	{
-		Serial0_SendChar(Publish[len]);
-	}
-	Serial0_SendChar(0x33);
-	Serial0_SendChar(0x30);
-}
-void Publish1(void)
-{
-	unsigned char len=0;
-	for(len=0;len<93;len++)
-	{
-		Serial0_SendChar(Publish[len]);
-	}
-	Serial0_SendChar(0x33);
-	Serial0_SendChar(0x31);
-}
-void Publish60(void)
-{
-	unsigned char len=0;
-	for(len=0;len<93;len++)
-	{
-		Serial0_SendChar(Publish[len]);
-	}
-	Serial0_SendChar(0x36);
-	Serial0_SendChar(0x30);
-}
-void Publish61(void)
-{
-	unsigned char len=0;
-	for(len=0;len<93;len++)
-	{
-		Serial0_SendChar(Publish[len]);
-	}
-	Serial0_SendChar(0x36);
-	Serial0_SendChar(0x35);
-}
-
-void MQTTPublish0(char channel, char value)
-{
-	unsigned char len=0;
-	for(len=0;len<93;len++)
-	{
-		Serial0_SendChar(Publish[len]);
-	}
-	Serial0_SendChar(channel+0x30);
-	Serial0_SendChar(value+0x30);
-}
-
-
-code char clientID[]="dc77c220-4d83-11e7-90dc-cd639ca909a8";
-code char username[]="77261bb0-4d2e-11e7-a1c8-03a310b07bb2";
-code char password[]="6ecdc74199d4b43d7c01c4c640162b71ab50a77c";
-void MQTTConnect()
-{
-	int len=0;
-	Serial0_SendChar(0x10);//header
-	len=12;
-	len+=(strlen(clientID)+2);
-	len+=(strlen(username)+2);
-	len+=(strlen(password)+2);
-	do{
-		unsigned char SendByte=len%128;
-		len=len/128;
-		if(len>0)
-		{
-			SendByte|=0x80;
-		}
-		Serial0_SendChar(SendByte);
-	}while (len>0);  //length
-
-	Serial0_SendInt(6);//length of MQIsqd
-	Serial0_SendString("MQIsdp");
-	Serial0_SendChar(3);//version of MQTT
-	Serial0_SendChar(0xc2);//flags
-	Serial0_SendInt(60);//time interval
-	
-	Serial0_SendInt(strlen(clientID));
-	Serial0_SendString(clientID);
-	Serial0_SendInt(strlen(username));
-	Serial0_SendString(username);
-	Serial0_SendInt(strlen(password));
-	Serial0_SendString(password);	
-}
-
-
-void MQTTPublish1(char channel, char value)
-{
-	int len=0;
-	Serial0_SendChar(0x32);//header
-	len=23;
-	len+=(strlen(clientID));
-	len+=(strlen(username));
-	do{
-		unsigned char SendByte=len%128;
-		len=len/128;
-		if(len>0)
-		{
-			SendByte|=0x80;
-		}
-		Serial0_SendChar(SendByte);
-	}while (len>0);  //length
-
-	Serial0_SendChar(0);
-	Serial0_SendChar(0X5A);
-	Serial0_SendString("v1/");
-	Serial0_SendString(username);
-	Serial0_SendString("/things/");
-	Serial0_SendString(clientID);
-	Serial0_SendString("/data/");
-	Serial0_SendChar(channel+0x30);
-	Serial0_SendChar(0x00);
-	Serial0_SendChar(0x01);
-	Serial0_SendChar(value+0x30);	
-}
-
 void main(void)
 {  
 	/*****************************************
@@ -183,157 +64,72 @@ void main(void)
 	OEB=0xff;
 	OEE=0x0f;
 	Delay(1000);
-	PD5=1;
+	PD5=1;	//PD5 is the display
+	PD7=0;   //PD7 is channel 1; 0 is off; 1 is on;
 	LEDFlash();
 	
 	I2CInit();
 
 	ssd1306_initalize();
 	ssd1306_clear();
-	ssd1306_printf("Zhiyong Xiao");
-		
-	//ssd1306_draw();
-	
+	ssd1306_printf("|   Mydevices   |  TCP IP Mode  |   By ZY Xiao  |     2017-7    ");
+	Delay(5000);
 		   
 	Serial0_Init();
 Restart:
 	Serial0_SendString("+++");
 	Delay(5000);
 	
+	ssd1306_initalize();
+	ssd1306_clear();
+	ssd1306_printf("|   Mydevices   |  TCP IP Mode  |  Reset Wifi   ");
 	Serial0_SendString("AT+RST");
 	Serial0_SendChar(0x0d);
 	Serial0_SendChar(0x0a);
 	Serial0_SendChar(0x00);
+	Delay(10000);						
+	ABCShow();
 	Delay(10000);
-	ABCShow();
 
-	Delay(15000);
-	ABCShow();
-
-	Serial0_SendString("AT+CIPSTART=\"TCP\",\"mqtt.mydevices.com\",1883");
+Reconnect:
+	ssd1306_initalize();
+	ssd1306_clear();
+	ssd1306_printf("|   Mydevices   |  TCP IP Mode  | Connect Server");
+	count=0;
+	Serial0_SendString("AT+CIPSTART=\"TCP\",\"192.168.2.3\",5000");
 	Serial0_SendChar(0x0d);
 	Serial0_SendChar(0x0a);
 	Serial0_SendChar(0x00);
 	Delay(10000);
-	ABCShow();
+	//temp_dataT[0]=count;ABCShow();Delay(10000);
+	if(count==0x38) {count=0;goto Reconnect;}
+	//temp_dataT[0]=count;ABCShow();Delay(10000);
+	//if(count!=0x36) {count=0;goto Restart;}
+	//if count =0x37 no ip maybe restart the modern	
+	//count=0;
+	ssd1306_initalize();
+	ssd1306_clear();
+	ssd1306_printf("| Connected |");
+	Delay(5000);
 	
 	Serial0_SendString("AT+CIPMODE=1");
 	Serial0_SendChar(0x0d);
 	Serial0_SendChar(0x0a);
 	Serial0_SendChar(0x00);
-	Delay(10000);
-	ABCShow(); 
+	Delay(5000);
+	ABCShow();
+	count=0;
 	
 	Serial0_SendString("AT+CIPSEND");
 	Serial0_SendChar(0x0d);
 	Serial0_SendChar(0x0a);
 	Serial0_SendChar(0x00);
 	Delay(10000); 
-	ABCShow();
-						
-	MQTTConnect();
-	Delay(10000); 
-
-	if (count!=4) goto Restart;
-
-	ABC1Show();
-
-
-	Delay(10000);
-
-	//subscribe
-	for(len=0;len<96;len++)
-	{
-		Serial0_SendChar(Subs[len]);
-	}
-	Delay(10000); 
-	ABC1Show();
-	Delay(10000);
-
-	PD7=0;
-	Lig=0;
-	MQTTPublish0(2,0);
-	MQTTPublish0(3,0);
-while(1)
-{	
-	/*
-	char h,l;
-	h= (count>>4)&0x0f;
-	l=	count&0x0f;
-	if (h<0x0a)
-		temp_dataT[4]=(h+0x30);
-	else
-		temp_dataT[4]=(h+0x57);
-	if (l<0x0a)
-		temp_dataT[5]=(l+0x30);
-	else
-		temp_dataT[5]=(l+0x57);	 */
-
-	if (count>30)
-	{			
-		temp_dataT[0]=temp_dataT[count-1];
-
-		if (temp_dataT[0]==0x30)
-		{
-			PD7=0;
-			Lig=0;
-			MQTTPublish0(2,0);
-			MQTTPublish0(3,0);
-			
-		}
-		else
-		{
-			PD7=1;
-			Lig=1;
-			MQTTPublish0(2,1);
-			MQTTPublish0(3,1);
-		}
-		count=0;
-		//ABCShow();
-	}
-	//Delay(800);
-	MQTTPublish1(1, 1);
-	Delay(50);
-	if (count==4)
-		CountineCheck=0;
-	else
-		CountineCheck++;
-	if (CountineCheck==10)
-		goto Restart;
+	if(count!=0x16) {count=0;goto Restart;}
+	//temp_dataT[0]=count;ABC1Show();Delay(30000);
 	count=0;
-	//ABC1Show();
-	Delay(950);
-	MQTTPublish0(1, 0);
-	if (Lig==1)
-	{	
-		MQTTPublish0(3,1);	
-	}
-	else
-	{
-		MQTTPublish0(3,0);	
-	}
-	Delay(1000);
-}
 
-	/*Serial0_SendString("AT+CIPSTART=\"TCP\",\"192.168.2.2\",8080");
-	Serial0_SendChar(0x0d);
-	Serial0_SendChar(0x0a);
-	Serial0_SendChar(0x00);
-	Delay(10000);  */
-
-
-//	Serial0_SendString("AT+CIPMODE=1");
-//	Serial0_SendChar(0x0d);
-//	Serial0_SendChar(0x0a);
-//	Serial0_SendChar(0x00);
-//	Delay(10000); 
-
-	//Serial0_SendString("AT+CIPSEND");
-	//Serial0_SendChar(0x0d);
-	//Serial0_SendChar(0x0a);
-	//Serial0_SendChar(0x00);
-	//Delay(10000); 
-	
+	Delay(10000);	
 
 	//Serial0_SendString("Hahah");
 	/*Serial0_SendString("AT+CWJAP=\"zhiyong_yang\",\"26996014\"");
@@ -341,7 +137,32 @@ while(1)
 	Serial0_SendChar(0x0a);
 	Serial0_SendChar(0x00);*/
 		 
-	LEDFlash();	
-	while(1);
+	LEDFlash();
+	ssd1306_initalize();
+	ssd1306_clear();
+	ssd1306_printf("Waiting...");	
+	while(1){
+		Delay(5000);
+		if (count==2)
+		{
+			//ABC1Show();
+			if (temp_dataT[0]==0x01)
+			{
+				PD7=temp_dataT[1]&0x01;
+				ssd1306_initalize();
+				ssd1306_clear();
+				if (temp_dataT[1])
+					ssd1306_printf("Channel 1: ON");
+				else
+					ssd1306_printf("Channel 1: OFF");
+			}
+			if 	(temp_dataT[0]==0x00) 
+			{
+				Delay(10000);
+				goto Restart;
+			}	
+		}
+		count=0;
+	}
 	//LEDKeyTest();
 }
