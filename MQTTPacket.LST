@@ -1,0 +1,114 @@
+C51 COMPILER V9.00   MQTTPACKET                                                            06/14/2017 19:17:10 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE MQTTPACKET
+OBJECT MODULE PLACED IN MQTTPacket.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE MQTTPacket.c OPTIMIZE(6,SPEED) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          /*******************************************************************************
+   2           * Copyright (c) 2014 IBM Corp.
+   3           *
+   4           * All rights reserved. This program and the accompanying materials
+   5           * are made available under the terms of the Eclipse Public License v1.0
+   6           * and Eclipse Distribution License v1.0 which accompany this distribution.
+   7           *
+   8           * The Eclipse Public License is available at
+   9           *    http://www.eclipse.org/legal/epl-v10.html
+  10           * and the Eclipse Distribution License is available at
+  11           *   http://www.eclipse.org/org/documents/edl-v10.php.
+  12           *
+  13           * Contributors:
+  14           *    Ian Craggs - initial API and implementation and/or initial documentation
+  15           *    Sergio R. Caprile - non-blocking packet read functions for stream transport
+  16           *******************************************************************************/
+  17          
+  18          #include "MQTTPacket.h"
+  19          #include "ESP8266.h"
+  20          
+  21          #include <string.h>
+  22          
+  23          /**
+  24           * Encodes the message length according to the MQTT algorithm
+  25           * @param buf the buffer into which the encoded data is written
+  26           * @param length the length to be encoded
+  27           * @return the number of bytes written to buffer
+  28           */
+  29          int MQTTPacket_encode(unsigned char* buf, int length)
+  30          {
+  31   1              int rc = 0;
+  32   1      
+  33   1              do
+  34   1              {
+  35   2                      char d = length % 128;
+  36   2                      length /= 128;
+  37   2                      /* if there are more digits to encode, set the top bit of this digit */
+  38   2                      if (length > 0)
+  39   2                              d |= 0x80;
+  40   2                      buf[rc++] = d;
+  41   2              } while (length > 0);
+  42   1              return rc;
+  43   1      }
+  44          
+  45          
+  46          /**
+  47           * Decodes the message length according to the MQTT algorithm
+  48           * @param getcharfn pointer to function to read the next character from the data source
+  49           * @param value the decoded length returned
+  50           * @return the number of bytes read from the socket
+  51           */        /*
+  52          int MQTTPacket_decode(int (*getcharfn)(unsigned char*, int), int* value)
+  53          {
+  54                  unsigned char c;
+  55                  int multiplier = 1;
+C51 COMPILER V9.00   MQTTPACKET                                                            06/14/2017 19:17:10 PAGE 2   
+
+  56                  int len = 0;
+  57          #define MAX_NO_OF_REMAINING_LENGTH_BYTES 4
+  58          
+  59                  *value = 0;
+  60                  do
+  61                  {
+  62                          int rc = MQTTPACKET_READ_ERROR;
+  63          
+  64                          if (++len > MAX_NO_OF_REMAINING_LENGTH_BYTES)
+  65                          {
+  66                                  rc = MQTTPACKET_READ_ERROR;     /* bad data */
+  67                   /*             goto exit;
+  68                          }
+  69                          rc = (*getcharfn)(&c, 1);
+  70                          if (rc != 1)
+  71                                  goto exit;
+  72                          *value += (c & 127) * multiplier;
+  73                          multiplier *= 128;
+  74                  } while ((c & 128) != 0);
+  75          exit:
+  76                  return len;
+  77          }                                       
+  78          
+  79          
+  80          
+  81          */
+  82          
+  83          void MQTT_Connet()
+  84          {
+  85   1              
+  86   1               ;
+  87   1              //writeChar(&ptr, header.byte); /* write header */
+  88   1      }
+*** WARNING C316 IN LINE 88 OF MQTTPacket.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    104    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

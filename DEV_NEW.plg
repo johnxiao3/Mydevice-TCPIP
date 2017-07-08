@@ -1,0 +1,81 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Dev_io - iic\DEV_NEW.uvproj
+Project File Date:  06/10/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling dev_io.c...
+dev_io.c(1): warning C318: can't open file 'Fx2.h'
+dev_io.c(2): warning C318: can't open file 'fx2regs.h'
+LED_KEY.H(8): error C141: syntax error near 'ms', expected ')'
+LED_KEY.H(10): error C129: missing ';' before 'ScanKey'
+dev_io.c(99): warning C316: unterminated conditionals
+compiling ESP8266.c...
+ESP8266.c(3): warning C318: can't open file 'Fx2.h'
+ESP8266.c(4): warning C318: can't open file 'fx2regs.h'
+ESP8266.C(9): error C141: syntax error near 'ms', expected ')'
+ESP8266.C(15): error C202: 'CPUCS': undefined identifier
+ESP8266.C(16): error C202: 'UART230': undefined identifier
+ESP8266.C(17): error C202: 'PCON': undefined identifier
+ESP8266.C(18): error C202: 'SCON0': undefined identifier
+ESP8266.C(19): error C202: 'ES0': undefined identifier
+ESP8266.C(20): error C202: 'TR0': undefined identifier
+ESP8266.C(21): error C202: 'EA': undefined identifier
+ESP8266.C(80): error C141: syntax error near 'source', expected ')'
+ESP8266.c(107): warning C316: unterminated conditionals
+compiling iic_comm.c...
+iic_comm.c(2): warning C318: can't open file 'Fx2.h'
+iic_comm.c(3): warning C318: can't open file 'fx2regs.h'
+IIC_COMM.C(8): error C202: 'PB0': undefined identifier
+IIC_COMM.C(9): error C202: 'PB1': undefined identifier
+IIC_COMM.C(14): error C202: 'PB0': undefined identifier
+IIC_COMM.C(16): error C202: 'PB1': undefined identifier
+IIC_COMM.C(22): error C202: 'PB0': undefined identifier
+IIC_COMM.C(23): error C202: 'PB1': undefined identifier
+IIC_COMM.C(24): error C202: 'PB0': undefined identifier
+IIC_COMM.C(25): error C202: 'PB1': undefined identifier
+IIC_COMM.C(30): error C202: 'PB1': undefined identifier
+IIC_COMM.C(31): error C202: 'PB0': undefined identifier
+IIC_COMM.C(32): error C202: 'PB1': undefined identifier
+IIC_COMM.C(33): error C202: 'PB0': undefined identifier
+IIC_COMM.C(38): error C202: 'PB0': undefined identifier
+IIC_COMM.C(39): error C202: 'PB1': undefined identifier
+IIC_COMM.C(40): error C202: 'PB1': undefined identifier
+IIC_COMM.C(41): error C202: 'PB0': undefined identifier
+IIC_COMM.C(46): error C202: 'PB0': undefined identifier
+IIC_COMM.C(47): error C202: 'PB1': undefined identifier
+IIC_COMM.C(48): error C202: 'PB1': undefined identifier
+IIC_COMM.C(49): error C202: 'PB0': undefined identifier
+IIC_COMM.C(57): error C202: 'PB0': undefined identifier
+IIC_COMM.C(59): error C202: 'PB0': undefined identifier
+IIC_COMM.C(60): error C202: 'PB1': undefined identifier
+IIC_COMM.C(64): error C202: 'PB1': undefined identifier
+IIC_COMM.C(67): error C202: 'PB0': undefined identifier
+IIC_COMM.C(68): error C202: 'PB1': undefined identifier
+IIC_COMM.C(70): error C202: 'PB0': undefined identifier
+IIC_COMM.C(71): error C202: 'PB1': undefined identifier
+IIC_COMM.C(79): error C202: 'PB1': undefined identifier
+IIC_COMM.C(80): error C202: 'PB0': undefined identifier
+IIC_COMM.C(84): error C202: 'PB1': undefined identifier
+iic_comm.c(87): warning C316: unterminated conditionals
+compiling LED_Key.c...
+LED_Key.c(1): warning C318: can't open file 'Fx2.h'
+LED_Key.c(2): warning C318: can't open file 'fx2regs.h'
+LED_KEY.C(6): error C202: 'OEE': undefined identifier
+LED_KEY.C(19): error C141: syntax error near 'ms', expected ')'
+LED_KEY.C(21): error C202: 'ms': undefined identifier
+LED_KEY.C(23): error C129: missing ';' before 'ScanKey'
+compiling MQTTConnectClient.c...
+MQTTConnectClient.c(108): warning C316: unterminated conditionals
+compiling smallfonts.c...
+SMALLFONTS.C(233): error C249: 'DATA': SEGMENT TOO LARGE
+compiling ssd1306.c...
+ssd1306.c(1): warning C318: can't open file 'Fx2.h'
+ssd1306.c(2): warning C318: can't open file 'fx2regs.h'
+SSD1306.C(329): warning C280: 'j': unreferenced local variable
+ssd1306.c(360): warning C316: unterminated conditionals
+Target not created

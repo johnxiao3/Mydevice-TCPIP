@@ -1,0 +1,180 @@
+C51 COMPILER V9.00   ESP8266                                                               06/14/2017 19:17:10 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE ESP8266
+OBJECT MODULE PLACED IN ESP8266.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE ESP8266.c OPTIMIZE(6,SPEED) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "ESP8266.h"
+   2          
+   3          #include "Fx2.h"
+   4          #include "fx2regs.h"
+   5          #include "string.h"
+   6          
+   7          #include "ssd1306.h"
+   8                                          
+   9          void Delay(WORD ms);
+  10          
+  11          unsigned char temp_dataT[70];
+  12          unsigned char count=0;
+  13          void Serial0_Init()      // serial UART 0 with Timer 1 in mode 2 or high speed baud rate generator
+  14          {
+  15   1              CPUCS = 0x0a; //24Mhz
+  16   1              UART230=0x01;// Enable high-speed baud rate generator for Serial port 0
+  17   1              PCON    &= ~0x80;// Disable doubling of the baud rate for Serial port 0 (115,2K instead 230K)
+  18   1              SCON0 = 0x50; //Set Serial Mode = 1, Recieve enable bit = 1     
+  19   1              ES0 = 1;     //ÔÊÐí´®¿Ú0ÖÐ¶Ï
+  20   1          TR0 = 1;
+  21   1              EA = 1; 
+  22   1              //TMOD=0x20;  //timer1 mode2
+  23   1              //CKCON|=0x10;//T1M=1
+  24   1              //T2CON = 0x34; //
+  25   1              //RCAP2H = 0xff; //Upper 8 bit of 16 bit counter to FF
+  26   1              //RCAP2L = 0xfa; //value of the lower 8 bits of timer set to baud rate
+  27   1      }
+  28          
+  29          void Serial0_SendString(char* temp)
+  30          {
+  31   1              unsigned char i;
+  32   1              for(i=0;i<strlen(temp);i++)
+  33   1              {
+  34   2                      Serial0_SendChar(*(temp+i));
+  35   2              }
+  36   1      }
+  37          
+  38          void Serial0_SendString1(char* temp)
+  39          {
+  40   1              unsigned char i;
+  41   1              for(i=0;i<strlen(temp);i++)
+  42   1              {
+  43   2                      Serial0_SendChar(temp[i]);
+  44   2              }
+  45   1      }
+  46          
+  47          void ABC1Show()
+  48          {
+  49   1              unsigned char h,l,i;
+  50   1              ssd1306_clear();        
+  51   1              writeCommand(SSD1306_SETLOWCOLUMN | 0x0);  // low col = 0
+  52   1          writeCommand(SSD1306_SETHIGHCOLUMN | 0x0);  // hi col = 0
+  53   1          writeCommand(SSD1306_SETSTARTLINE | 0x0); // line #0   */
+  54   1              writeCommand(0xb0);
+  55   1              
+C51 COMPILER V9.00   ESP8266                                                               06/14/2017 19:17:10 PAGE 2   
+
+  56   1              for (i=0;i<count;i++)
+  57   1              {
+  58   2                      h= (temp_dataT[i]>>4)&0x0f;
+  59   2                      l=      temp_dataT[i]&0x0f;
+  60   2                      if (h<0x0a)
+  61   2                              ssd1306_printchar(h+0x30);
+  62   2                      else
+  63   2                              ssd1306_printchar(h+0x57);
+  64   2                      if (l<0x0a)
+  65   2                              ssd1306_printchar(l+0x30);
+  66   2                      else
+  67   2                              ssd1306_printchar(l+0x57);      
+  68   2              }                       
+  69   1              count=0;
+  70   1      }
+  71          
+  72          void ABCshow()
+  73          {
+  74   1              unsigned char h,l,i;
+  75   1              ssd1306_clear();        
+  76   1              writeCommand(SSD1306_SETLOWCOLUMN | 0x0);  // low col = 0
+  77   1          writeCommand(SSD1306_SETHIGHCOLUMN | 0x0);  // hi col = 0
+  78   1          writeCommand(SSD1306_SETSTARTLINE | 0x0); // line #0   */
+  79   1              writeCommand(0xb0);
+  80   1              //ssd1306_printf(temp_dataT);
+  81   1              for (i=0;i<count;i++)
+  82   1              {
+  83   2                      if ((temp_dataT[i]==0x0d) ||(temp_dataT[i]==0x0a) || (temp_dataT[i]==0x0b))
+  84   2                                      ssd1306_printchar(0x20);
+  85   2                      else    
+  86   2                                      ssd1306_printchar(temp_dataT[i]);       
+  87   2              }
+  88   1                      /*
+  89   1              for (i=0;i<count;i++)
+  90   1              {
+  91   1                      h= (temp_dataT[i]>>4)&0x0f;
+  92   1                      l=      temp_dataT[i]&0x0f;
+  93   1                      if (h<0x0a)
+  94   1                              ssd1306_printchar(h+0x30);
+  95   1                      else
+  96   1                              ssd1306_printchar(h+0x57);
+  97   1                      if (l<0x0a)
+  98   1                              ssd1306_printchar(l+0x30);
+  99   1                      else
+ 100   1                              ssd1306_printchar(l+0x57);      
+ 101   1              }                                 */
+ 102   1              count=0;
+ 103   1      }
+*** WARNING C280 IN LINE 74 OF ESP8266.C: 'h': unreferenced local variable
+*** WARNING C280 IN LINE 74 OF ESP8266.C: 'l': unreferenced local variable
+ 104          void Serial0_SendInt(int source)
+ 105          {
+ 106   1              SBUF0 = (unsigned char)(source / 256);
+ 107   1              while(TI == 0);
+ 108   1              TI = 0;
+ 109   1              SBUF0 = (unsigned char)(source % 256);
+ 110   1              while(TI == 0);
+ 111   1              TI = 0; 
+ 112   1      }
+ 113          
+ 114          void Serial0_SendChar(char source)
+ 115          {
+C51 COMPILER V9.00   ESP8266                                                               06/14/2017 19:17:10 PAGE 3   
+
+ 116   1              SBUF0 = source;
+ 117   1              while(TI == 0);
+ 118   1              TI = 0;
+ 119   1      }
+ 120          void ISR_USART0(void) interrupt 4
+ 121          {        
+ 122   1              BYTE temp_data,h,l;
+ 123   1              if(RI == 1)
+ 124   1              {
+ 125   2                      RI = 0; 
+ 126   2                      //temp_data=SBUF0;
+ 127   2                      if (count <70)
+ 128   2                      {
+ 129   3                              temp_dataT[count]=SBUF0;
+ 130   3                              count++;
+ 131   3                              if(temp_dataT[count-1]==0x0a);
+ 132   3                      }
+ 133   2                      else
+ 134   2                      {
+ 135   3                              count=0;
+ 136   3                      }
+ 137   2                              //ABCShow();
+ 138   2                      /*if(temp_dataT[count-1]==0xff)
+ 139   2                              PD7=1;
+ 140   2                      if(temp_dataT[count-1]==0xfe)
+ 141   2                              PD7=0;                    */    
+ 142   2                      //      ssd1306_printchar(temp_data);
+ 143   2                      
+ 144   2              }
+ 145   1      }    
+*** WARNING C280 IN LINE 122 OF ESP8266.C: 'temp_data': unreferenced local variable
+*** WARNING C280 IN LINE 122 OF ESP8266.C: 'h': unreferenced local variable
+*** WARNING C280 IN LINE 122 OF ESP8266.C: 'l': unreferenced local variable
+ 146                                                                                          
+ 147          
+*** WARNING C316 IN LINE 147 OF ESP8266.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    417    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     71      17
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  6 WARNING(S),  0 ERROR(S)

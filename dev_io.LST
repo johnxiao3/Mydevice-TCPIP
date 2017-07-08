@@ -1,0 +1,382 @@
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE DEV_IO
+OBJECT MODULE PLACED IN dev_io.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE dev_io.c OPTIMIZE(6,SPEED) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "Fx2.h"
+   2          #include "fx2regs.h"
+   3          #include "LED_Key.h"
+   4          
+   5          #include "iic_comm.h"
+   6          #include "ssd1306.h"
+   7          
+   8          #include "esp8266.h"
+   9          #include "MQTTPACKET.H" 
+  10          #include "string.h"
+  11          
+  12          
+  13          code unsigned char at_mode[14]={'A','T','+','C','W','M','O','D','E','=','1',0x0D,0x0A,'\0'}; 
+  14          
+  15          
+  16          code char Connect[133]=
+  17          {0x10,0x82,0x01,0x00,0x06,0x4d,0x51,0x49,0x73,0x64,0x70,0x03,0xc2,0x00,0x3c,0x00
+  18          ,0x24,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64,0x38,0x33,0x2d,0x31
+  19          ,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36,0x33,0x39,0x63,0x61
+  20          ,0x39,0x30,0x39,0x61,0x38,0x00,0x24,0x37,0x37,0x32,0x36,0x31,0x62,0x62,0x30,0x2d
+  21          ,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38,0x2d,0x30
+  22          ,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x00,0x28,0x36,0x65,0x63
+  23          ,0x64,0x63,0x37,0x34,0x31,0x39,0x39,0x64,0x34,0x62,0x34,0x33,0x64,0x37,0x63,0x30
+  24          ,0x31,0x63,0x34,0x63,0x36,0x34,0x30,0x31,0x36,0x32,0x62,0x37,0x31,0x61,0x62,0x35
+  25          ,0x30,0x61,0x37,0x37,0x63};      
+  26          
+  27          code char Subs[96]=
+  28          {0x82,0x5e,0x00,0x01,0x00,0x59,0x76,0x31,0x2f,0x37,0x37,0x32,0x36,0x31,0x62,0x62
+  29          ,0x30,0x2d,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38
+  30          ,0x2d,0x30,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x2f,0x74,0x68
+  31          ,0x69,0x6e,0x67,0x73,0x2f,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64
+  32          ,0x38,0x33,0x2d,0x31,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36
+  33          ,0x33,0x39,0x63,0x61,0x39,0x30,0x39,0x61,0x38,0x2f,0x63,0x6d,0x64,0x2f,0x32,0x00};
+  34          
+  35          code char Publish[93]=
+  36          {0x30,0x5d,0x00,0x5a,0x76,0x31,0x2f,0x37,0x37,0x32,0x36,0x31,0x62,0x62,0x30,0x2d
+  37          ,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38,0x2d,0x30
+  38          ,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x2f,0x74,0x68,0x69,0x6e
+  39          ,0x67,0x73,0x2f,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64,0x38,0x33
+  40          ,0x2d,0x31,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36,0x33,0x39
+  41          ,0x63,0x61,0x39,0x30,0x39,0x61,0x38,0x2f,0x64,0x61,0x74,0x61,0x2f};
+  42          
+  43          
+  44           
+  45          extern unsigned char temp_dataT[70];
+  46          extern unsigned char count;
+  47          unsigned char Lig=1;
+  48          unsigned char CountineCheck=0;
+  49          
+  50          void Publish0(void)
+  51          {
+  52   1              unsigned char len=0;
+  53   1              for(len=0;len<93;len++)
+  54   1              {
+  55   2                      Serial0_SendChar(Publish[len]);
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 2   
+
+  56   2              }
+  57   1              Serial0_SendChar(0x33);
+  58   1              Serial0_SendChar(0x30);
+  59   1      }
+  60          void Publish1(void)
+  61          {
+  62   1              unsigned char len=0;
+  63   1              for(len=0;len<93;len++)
+  64   1              {
+  65   2                      Serial0_SendChar(Publish[len]);
+  66   2              }
+  67   1              Serial0_SendChar(0x33);
+  68   1              Serial0_SendChar(0x31);
+  69   1      }
+  70          void Publish60(void)
+  71          {
+  72   1              unsigned char len=0;
+  73   1              for(len=0;len<93;len++)
+  74   1              {
+  75   2                      Serial0_SendChar(Publish[len]);
+  76   2              }
+  77   1              Serial0_SendChar(0x36);
+  78   1              Serial0_SendChar(0x30);
+  79   1      }
+  80          void Publish61(void)
+  81          {
+  82   1              unsigned char len=0;
+  83   1              for(len=0;len<93;len++)
+  84   1              {
+  85   2                      Serial0_SendChar(Publish[len]);
+  86   2              }
+  87   1              Serial0_SendChar(0x36);
+  88   1              Serial0_SendChar(0x35);
+  89   1      }
+  90          
+  91          void MQTTPublish0(char channel, char value)
+  92          {
+  93   1              unsigned char len=0;
+  94   1              for(len=0;len<93;len++)
+  95   1              {
+  96   2                      Serial0_SendChar(Publish[len]);
+  97   2              }
+  98   1              Serial0_SendChar(channel+0x30);
+  99   1              Serial0_SendChar(value+0x30);
+ 100   1      }
+ 101          
+ 102          
+ 103          code char clientID[]="dc77c220-4d83-11e7-90dc-cd639ca909a8";
+ 104          code char username[]="77261bb0-4d2e-11e7-a1c8-03a310b07bb2";
+ 105          code char password[]="6ecdc74199d4b43d7c01c4c640162b71ab50a77c";
+ 106          void MQTTConnect()
+ 107          {
+ 108   1              int len=0;
+ 109   1              Serial0_SendChar(0x10);//header
+ 110   1              len=12;
+ 111   1              len+=(strlen(clientID)+2);
+ 112   1              len+=(strlen(username)+2);
+ 113   1              len+=(strlen(password)+2);
+ 114   1              do{
+ 115   2                      unsigned char SendByte=len%128;
+ 116   2                      len=len/128;
+ 117   2                      if(len>0)
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 3   
+
+ 118   2                      {
+ 119   3                              SendByte|=0x80;
+ 120   3                      }
+ 121   2                      Serial0_SendChar(SendByte);
+ 122   2              }while (len>0);  //length
+ 123   1      
+ 124   1              Serial0_SendInt(6);//length of MQIsqd
+ 125   1              Serial0_SendString("MQIsdp");
+ 126   1              Serial0_SendChar(3);//version of MQTT
+ 127   1              Serial0_SendChar(0xc2);//flags
+ 128   1              Serial0_SendInt(60);//time interval
+ 129   1              
+ 130   1              Serial0_SendInt(strlen(clientID));
+ 131   1              Serial0_SendString(clientID);
+ 132   1              Serial0_SendInt(strlen(username));
+ 133   1              Serial0_SendString(username);
+ 134   1              Serial0_SendInt(strlen(password));
+ 135   1              Serial0_SendString(password);   
+ 136   1      }
+ 137          
+ 138          
+ 139          void MQTTPublish1(char channel, char value)
+ 140          {
+ 141   1              int len=0;
+ 142   1              Serial0_SendChar(0x32);//header
+ 143   1              len=23;
+ 144   1              len+=(strlen(clientID));
+ 145   1              len+=(strlen(username));
+ 146   1              do{
+ 147   2                      unsigned char SendByte=len%128;
+ 148   2                      len=len/128;
+ 149   2                      if(len>0)
+ 150   2                      {
+ 151   3                              SendByte|=0x80;
+ 152   3                      }
+ 153   2                      Serial0_SendChar(SendByte);
+ 154   2              }while (len>0);  //length
+ 155   1      
+ 156   1              Serial0_SendChar(0);
+ 157   1              Serial0_SendChar(0X5A);
+ 158   1              Serial0_SendString("v1/");
+ 159   1              Serial0_SendString(username);
+ 160   1              Serial0_SendString("/things/");
+ 161   1              Serial0_SendString(clientID);
+ 162   1              Serial0_SendString("/data/");
+ 163   1              Serial0_SendChar(channel+0x30);
+ 164   1              Serial0_SendChar(0x00);
+ 165   1              Serial0_SendChar(0x01);
+ 166   1              Serial0_SendChar(value+0x30);   
+ 167   1      }
+ 168          
+ 169          void main(void)
+ 170          {  
+ 171   1              /*****************************************
+ 172   1              * Write to slave device with
+ 173   1              * slave address e.g. say 0x20
+ 174   1              *****************************************/
+ 175   1              //unsigned char ack;
+ 176   1              //MQTTClient_connectOptions pdata a;
+ 177   1      
+ 178   1              int len=0;
+ 179   1              MQTTHeader header = {0};
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 4   
+
+ 180   1              MQTTConnectFlags flags = {0};
+ 181   1      
+ 182   1              OED=0xff;
+ 183   1              OEB=0xff;
+ 184   1              OEE=0x0f;
+ 185   1              Delay(1000);
+ 186   1              PD5=1;
+ 187   1              LEDFlash();
+ 188   1              
+ 189   1              I2CInit();
+ 190   1      
+ 191   1              ssd1306_initalize();
+ 192   1              ssd1306_clear();
+ 193   1              ssd1306_printf("Zhiyong Xiao");
+ 194   1                      
+ 195   1              //ssd1306_draw();
+ 196   1              
+ 197   1                         
+ 198   1              Serial0_Init();
+ 199   1      Restart:
+ 200   1              Serial0_SendString("+++");
+ 201   1              Delay(5000);
+ 202   1              
+ 203   1              Serial0_SendString("AT+RST");
+ 204   1              Serial0_SendChar(0x0d);
+ 205   1              Serial0_SendChar(0x0a);
+ 206   1              Serial0_SendChar(0x00);
+ 207   1              Delay(10000);
+ 208   1              ABCShow();
+*** WARNING C206 IN LINE 208 OF DEV_IO.C: 'ABCShow': missing function-prototype
+ 209   1      
+ 210   1              Delay(15000);
+ 211   1              ABCShow();
+ 212   1      
+ 213   1              Serial0_SendString("AT+CIPSTART=\"TCP\",\"mqtt.mydevices.com\",1883");
+ 214   1              Serial0_SendChar(0x0d);
+ 215   1              Serial0_SendChar(0x0a);
+ 216   1              Serial0_SendChar(0x00);
+ 217   1              Delay(10000);
+ 218   1              ABCShow();
+ 219   1              
+ 220   1              Serial0_SendString("AT+CIPMODE=1");
+ 221   1              Serial0_SendChar(0x0d);
+ 222   1              Serial0_SendChar(0x0a);
+ 223   1              Serial0_SendChar(0x00);
+ 224   1              Delay(10000);
+ 225   1              ABCShow(); 
+ 226   1              
+ 227   1              Serial0_SendString("AT+CIPSEND");
+ 228   1              Serial0_SendChar(0x0d);
+ 229   1              Serial0_SendChar(0x0a);
+ 230   1              Serial0_SendChar(0x00);
+ 231   1              Delay(10000); 
+ 232   1              ABCShow();
+ 233   1                                                      
+ 234   1              MQTTConnect();
+ 235   1              Delay(10000); 
+ 236   1      
+ 237   1              if (count!=4) goto Restart;
+ 238   1      
+ 239   1              ABC1Show();
+ 240   1      
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 5   
+
+ 241   1      
+ 242   1              Delay(10000);
+ 243   1      
+ 244   1              //subscribe
+ 245   1              for(len=0;len<96;len++)
+ 246   1              {
+ 247   2                      Serial0_SendChar(Subs[len]);
+ 248   2              }
+ 249   1              Delay(10000); 
+ 250   1              ABC1Show();
+ 251   1              Delay(10000);
+ 252   1      
+ 253   1              PD7=0;
+ 254   1              Lig=0;
+ 255   1              MQTTPublish0(2,0);
+ 256   1              MQTTPublish0(3,0);
+ 257   1      while(1)
+ 258   1      {       
+ 259   2              /*
+ 260   2              char h,l;
+ 261   2              h= (count>>4)&0x0f;
+ 262   2              l=      count&0x0f;
+ 263   2              if (h<0x0a)
+ 264   2                      temp_dataT[4]=(h+0x30);
+ 265   2              else
+ 266   2                      temp_dataT[4]=(h+0x57);
+ 267   2              if (l<0x0a)
+ 268   2                      temp_dataT[5]=(l+0x30);
+ 269   2              else
+ 270   2                      temp_dataT[5]=(l+0x57);  */
+ 271   2      
+ 272   2              if (count>30)
+ 273   2              {                       
+ 274   3                      temp_dataT[0]=temp_dataT[count-1];
+ 275   3      
+ 276   3                      if (temp_dataT[0]==0x30)
+ 277   3                      {
+ 278   4                              PD7=0;
+ 279   4                              Lig=0;
+ 280   4                              MQTTPublish0(2,0);
+ 281   4                              MQTTPublish0(3,0);
+ 282   4                              
+ 283   4                      }
+ 284   3                      else
+ 285   3                      {
+ 286   4                              PD7=1;
+ 287   4                              Lig=1;
+ 288   4                              MQTTPublish0(2,1);
+ 289   4                              MQTTPublish0(3,1);
+ 290   4                      }
+ 291   3                      count=0;
+ 292   3                      //ABCShow();
+ 293   3              }
+ 294   2              //Delay(800);
+ 295   2              MQTTPublish1(1, 1);
+ 296   2              Delay(50);
+ 297   2              if (count==4)
+ 298   2                      CountineCheck=0;
+ 299   2              else
+ 300   2                      CountineCheck++;
+ 301   2              if (CountineCheck==10)
+ 302   2                      goto Restart;
+C51 COMPILER V9.00   DEV_IO                                                                06/14/2017 19:17:10 PAGE 6   
+
+ 303   2              count=0;
+ 304   2              //ABC1Show();
+ 305   2              Delay(950);
+ 306   2              MQTTPublish0(1, 0);
+ 307   2              if (Lig==1)
+ 308   2              {       
+ 309   3                      MQTTPublish0(3,1);      
+ 310   3              }
+ 311   2              else
+ 312   2              {
+ 313   3                      MQTTPublish0(3,0);      
+ 314   3              }
+ 315   2              Delay(1000);
+ 316   2      }
+ 317   1      
+ 318   1              /*Serial0_SendString("AT+CIPSTART=\"TCP\",\"192.168.2.2\",8080");
+ 319   1              Serial0_SendChar(0x0d);
+ 320   1              Serial0_SendChar(0x0a);
+ 321   1              Serial0_SendChar(0x00);
+ 322   1              Delay(10000);  */
+ 323   1      
+ 324   1      
+ 325   1      //      Serial0_SendString("AT+CIPMODE=1");
+ 326   1      //      Serial0_SendChar(0x0d);
+ 327   1      //      Serial0_SendChar(0x0a);
+ 328   1      //      Serial0_SendChar(0x00);
+ 329   1      //      Delay(10000); 
+ 330   1      
+ 331   1              //Serial0_SendString("AT+CIPSEND");
+ 332   1              //Serial0_SendChar(0x0d);
+ 333   1              //Serial0_SendChar(0x0a);
+ 334   1              //Serial0_SendChar(0x00);
+ 335   1              //Delay(10000); 
+ 336   1              
+ 337   1      
+ 338   1              //Serial0_SendString("Hahah");
+ 339   1              /*Serial0_SendString("AT+CWJAP=\"zhiyong_yang\",\"26996014\"");
+ 340   1              Serial0_SendChar(0x0d);
+ 341   1              Serial0_SendChar(0x0a);
+ 342   1              Serial0_SendChar(0x00);*/
+ 343   1                       
+ 344   1              LEDFlash();     
+ 345   1              while(1);
+ 346   1              //LEDKeyTest();
+ 347   1      }
+*** WARNING C316 IN LINE 347 OF dev_io.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1145    ----
+   CONSTANT SIZE    =    574    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2      21
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

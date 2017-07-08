@@ -1,0 +1,367 @@
+; .\dev_io.SRC generated from: dev_io.c
+; COMPILER INVOKED BY:
+;        C:\Keil\C51\BIN\C51.EXE dev_io.c OPTIMIZE(6,SPEED) DEBUG OBJECTEXTEND SRC(.\dev_io.SRC)
+
+$NOMOD51
+
+NAME	DEV_IO
+
+TB81	BIT	0C0H.3
+INT2CLR	DATA	0A1H
+SM01	BIT	0C0H.7
+SM11	BIT	0C0H.6
+INT4CLR	DATA	0A2H
+EI2C	BIT	0E8H.1
+AC	BIT	0D0H.6
+SM21	BIT	0C0H.5
+EA	BIT	0A8H.7
+IE	DATA	0A8H
+DPH1	DATA	085H
+PI2C	BIT	0F8H.1
+GPIFSGLDATLX	DATA	0BEH
+FL	BIT	0D0H.1
+DPL1	DATA	084H
+EXF2	BIT	0C8H.6
+REN1	BIT	0C0H.4
+IP	DATA	0B8H
+RI	BIT	098H.0
+CY	BIT	0D0H.7
+TI	BIT	098H.1
+SPC_FNC	DATA	08FH
+INT6	BIT	0D8H.3
+RCAP2H	DATA	0CBH
+SP	DATA	081H
+OV	BIT	0D0H.2
+RCAP2L	DATA	0CAH
+C_T2	BIT	0C8H.1
+EP2468STAT	DATA	0AAH
+AUTOPTRH1	DATA	09AH
+RCLK	BIT	0C8H.5
+GPIFSGLDATLNOX	DATA	0BFH
+AUTOPTRH2	DATA	09DH
+EXIF	DATA	091H
+TCLK	BIT	0C8H.4
+EUSB	BIT	0E8H.0
+AUTOPTRL1	DATA	09BH
+AUTOPTRL2	DATA	09EH
+PCON	DATA	087H
+GPIFSGLDATH	DATA	0BDH
+RESI	BIT	0D8H.4
+EP01STAT	DATA	0BAH
+TMOD	DATA	089H
+TCON	DATA	088H
+PUSB	BIT	0F8H.0
+IE0	BIT	088H.1
+IE1	BIT	088H.3
+B	DATA	0F0H
+PA0	BIT	080H.0
+PB0	BIT	090H.0
+PA1	BIT	080H.1
+PC0	BIT	0A0H.0
+PB1	BIT	090H.1
+PA2	BIT	080H.2
+CP_RL2	BIT	0C8H.0
+PD0	BIT	0B0H.0
+PC1	BIT	0A0H.1
+PB2	BIT	090H.2
+PA3	BIT	080H.3
+PD1	BIT	0B0H.1
+PC2	BIT	0A0H.2
+PB3	BIT	090H.3
+PA4	BIT	080H.4
+PD2	BIT	0B0H.2
+AUTOPTRSETUP	DATA	0AFH
+PC3	BIT	0A0H.3
+PB4	BIT	090H.4
+PA5	BIT	080H.5
+ACC	DATA	0E0H
+PD3	BIT	0B0H.3
+PC4	BIT	0A0H.4
+PB5	BIT	090H.5
+PA6	BIT	080H.6
+PD4	BIT	0B0H.4
+ES0	BIT	0A8H.4
+PC5	BIT	0A0H.5
+PB6	BIT	090H.6
+PA7	BIT	080H.7
+PD5	BIT	0B0H.5
+ES1	BIT	0A8H.6
+ET0	BIT	0A8H.1
+PC6	BIT	0A0H.6
+PB7	BIT	090H.7
+PD6	BIT	0B0H.6
+ET1	BIT	0A8H.3
+PC7	BIT	0A0H.7
+TF0	BIT	088H.5
+PD7	BIT	0B0H.7
+ET2	BIT	0A8H.5
+TF1	BIT	088H.7
+TF2	BIT	0C8H.7
+RI1	BIT	0C0H.0
+RB8	BIT	098H.2
+TH0	DATA	08CH
+EX0	BIT	0A8H.0
+TH1	DATA	08DH
+IT0	BIT	088H.0
+TH2	DATA	0CDH
+TI1	BIT	0C0H.1
+EX1	BIT	0A8H.2
+TB8	BIT	098H.3
+IT1	BIT	088H.2
+P	BIT	0D0H.0
+EP24FIFOFLGS	DATA	0ABH
+SM0	BIT	098H.7
+TL0	DATA	08AH
+SM1	BIT	098H.6
+TL1	DATA	08BH
+TL2	DATA	0CCH
+SM2	BIT	098H.5
+EIE	DATA	0E8H
+PS0	BIT	0B8H.4
+PS1	BIT	0B8H.6
+PT0	BIT	0B8H.1
+RS0	BIT	0D0H.3
+PT1	BIT	0B8H.3
+OEA	DATA	0B2H
+RS1	BIT	0D0H.4
+PT2	BIT	0B8H.5
+OEB	DATA	0B3H
+TR0	BIT	088H.4
+OEC	DATA	0B4H
+TR1	BIT	088H.6
+TR2	BIT	0C8H.2
+PX0	BIT	0B8H.0
+OED	DATA	0B5H
+EP68FIFOFLGS	DATA	0ACH
+PX1	BIT	0B8H.2
+OEE	DATA	0B6H
+IOA	DATA	080H
+IOB	DATA	090H
+IOC	DATA	0A0H
+IOD	DATA	0B0H
+DPH	DATA	083H
+IOE	DATA	0B1H
+EIP	DATA	0F8H
+GPIFTRIG	DATA	0BBH
+EIEX4	BIT	0E8H.2
+DPL	DATA	082H
+EIEX5	BIT	0E8H.3
+SBUF0	DATA	099H
+EIEX6	BIT	0E8H.4
+SBUF1	DATA	0C1H
+EXEN2	BIT	0C8H.3
+SCON0	DATA	098H
+SMOD1	BIT	0D8H.7
+SCON1	DATA	0C0H
+REN	BIT	098H.4
+T2CON	DATA	0C8H
+DPS	DATA	086H
+EIPX4	BIT	0F8H.2
+MPAGE	DATA	092H
+EIPX5	BIT	0F8H.3
+EIPX6	BIT	0F8H.4
+EICON	DATA	0D8H
+CKCON	DATA	08EH
+F0	BIT	0D0H.5
+ERESI	BIT	0D8H.5
+PSW	DATA	0D0H
+RB81	BIT	0C0H.2
+?PR?SetupPortE?DEV_IO                    SEGMENT CODE 
+?PR?Delay1ms?DEV_IO  SEGMENT CODE 
+?PR?Delay1?DEV_IO    SEGMENT CODE 
+?PR?main?DEV_IO      SEGMENT CODE 
+	EXTRN	CODE (?C_STARTUP)
+	PUBLIC	main
+	PUBLIC	Delay1
+	PUBLIC	Delay1ms
+	PUBLIC	SetupPortE
+; #include "Fx2.h"
+; #include "fx2regs.h"
+; //#include "syncdly.h" // SYNCDELAY macro
+; 
+; void SetupPortE(void)
+
+	RSEG  ?PR?SetupPortE?DEV_IO
+SetupPortE:
+			; SOURCE LINE # 5
+; {
+			; SOURCE LINE # 6
+;     OEA = 0x0F;
+			; SOURCE LINE # 7
+	MOV  	OEA,#0FH
+; 	OEB = 0x0F;
+			; SOURCE LINE # 8
+	MOV  	OEB,#0FH
+; 	OEC = 0x0F;
+			; SOURCE LINE # 9
+	MOV  	OEC,#0FH
+; 	OED = 0x0F;
+			; SOURCE LINE # 10
+	MOV  	OED,#0FH
+; 	OEE = 0x0F;	
+			; SOURCE LINE # 11
+	MOV  	OEE,#0FH
+; }
+			; SOURCE LINE # 12
+	RET  	
+; END OF SetupPortE
+
+; 
+; 
+; 
+; void Delay1ms()
+
+	RSEG  ?PR?Delay1ms?DEV_IO
+Delay1ms:
+			; SOURCE LINE # 16
+; {
+			; SOURCE LINE # 17
+;     #pragma ASM
+;     // Delay for 1 millisecond (1000 microseconds).
+	  
+;     // 10 cycles * 166.6 ns per cycle is 1.66 microseconds per loop.
+	  
+;     // 1000 microseconds / 1.66 = 602. [assumes 24 MHz clock]
+	  
+;     mov a, #0 // Clear dps so that we're using dph and dpl!
+	  mov a, #0  
+;     mov DPS, a //
+	  mov DPS, a  
+;     mov dptr,#(0xffff - 602) // long pulse for operating
+	  mov dptr,#(0xffff - 602)  
+;     mov r4,#5
+	  mov r4,#5
+;  
+	  
+;     Loop1:
+	  Loop1:
+;         inc dptr // 3 cycles
+	  inc dptr  
+;         mov a,dpl // 2 cycles
+	  mov a,dpl  
+;         orl a,dph // 2 cycles
+	  orl a,dph  
+;         jnz Loop1 // 3 cycles
+	  jnz Loop1  
+;     #pragma ENDASM
+; }
+			; SOURCE LINE # 33
+	RET  	
+; END OF Delay1ms
+
+; 	  	 /*
+; void Delay(WORD ms)
+; {
+;     //
+;     // Adjust the delay based on the CPU clock
+;     // EZUSB_Delay1ms() assumes a 24MHz clock
+;     //
+;     //if ((CPUCS & bmCLKSPD) == 0) // 12Mhz
+;     //    ms = (ms + 1) / 2; // Round up before dividing so we can accept 1.
+;     //else if ((CPUCS & bmCLKSPD) == bmCLKSPD1) // 48Mhz
+;     //    ms = ms * 2; 
+;     while(ms--)
+;         Delay1ms();
+; }
+; 		  */
+; void Delay1(void)
+
+	RSEG  ?PR?Delay1?DEV_IO
+Delay1:
+	USING	0
+			; SOURCE LINE # 49
+; {
+			; SOURCE LINE # 50
+;     int j;
+;     int i;
+;     for(i=0;i<10;i++)
+			; SOURCE LINE # 53
+;---- Variable 'i?241' assigned to Register 'R6/R7' ----
+	CLR  	A
+	MOV  	R7,A
+	MOV  	R6,A
+?C0003:
+;     {
+			; SOURCE LINE # 54
+;         for(j=0;j<10000;j++)
+			; SOURCE LINE # 55
+;---- Variable 'j?240' assigned to Register 'R4/R5' ----
+	CLR  	A
+	MOV  	R5,A
+	MOV  	R4,A
+?C0006:
+;         {
+			; SOURCE LINE # 56
+;         }
+			; SOURCE LINE # 57
+	INC  	R5
+	CJNE 	R5,#00H,?C0013
+	INC  	R4
+?C0013:
+	CJNE 	R4,#027H,?C0006
+	CJNE 	R5,#010H,?C0006
+;     }
+			; SOURCE LINE # 58
+?C0005:
+	INC  	R7
+	CJNE 	R7,#00H,?C0014
+	INC  	R6
+?C0014:
+	MOV  	A,R7
+	XRL  	A,#0AH
+	ORL  	A,R6
+	JNZ  	?C0003
+; }		 
+			; SOURCE LINE # 59
+?C0009:
+	RET  	
+; END OF Delay1
+
+; 
+; void main(void)
+
+	RSEG  ?PR?main?DEV_IO
+main:
+	USING	0
+			; SOURCE LINE # 61
+; {
+			; SOURCE LINE # 62
+;     SetupPortE();
+			; SOURCE LINE # 63
+	LCALL	SetupPortE
+?C0010:
+;     while (1)
+			; SOURCE LINE # 64
+;     {
+			; SOURCE LINE # 65
+; 		IOE = ~0x01;
+			; SOURCE LINE # 66
+	MOV  	IOE,#0FEH
+; 		Delay1();
+			; SOURCE LINE # 67
+	LCALL	Delay1
+; 		IOE = ~0x02;
+			; SOURCE LINE # 68
+	MOV  	IOE,#0FDH
+; 		Delay1();
+			; SOURCE LINE # 69
+	LCALL	Delay1
+; 		IOE = ~0x04;
+			; SOURCE LINE # 70
+	MOV  	IOE,#0FBH
+; 		Delay1();
+			; SOURCE LINE # 71
+	LCALL	Delay1
+; 		IOE = ~0x08;
+			; SOURCE LINE # 72
+	MOV  	IOE,#0F7H
+; 		Delay1();
+			; SOURCE LINE # 73
+	LCALL	Delay1
+;     }
+			; SOURCE LINE # 74
+	SJMP 	?C0010
+	RET  	
+; END OF main
+
+	END

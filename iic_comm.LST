@@ -1,0 +1,113 @@
+C51 COMPILER V9.00   IIC_COMM                                                              06/14/2017 19:17:10 PAGE 1   
+
+
+C51 COMPILER V9.00, COMPILATION OF MODULE IIC_COMM
+OBJECT MODULE PLACED IN iic_comm.OBJ
+COMPILER INVOKED BY: C:\Keil\C51\BIN\C51.EXE iic_comm.c OPTIMIZE(6,SPEED) DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include "iic_comm.h"
+   2          #include "Fx2.h"
+   3          #include "fx2regs.h"
+   4          #include <intrins.h>
+   5           
+   6          void I2CInit()
+   7          {
+   8   1              SDA = 1;
+   9   1              SCL = 1;
+  10   1      }
+  11           
+  12          void I2CStart()
+  13          {
+  14   1              SDA = 0;
+  15   1              _nop_();
+  16   1              SCL = 0;
+  17   1      }
+  18           
+  19          void I2CRestart()
+  20          {                        
+  21   1      
+  22   1              SDA = 1;
+  23   1              SCL = 1;
+  24   1              SDA = 0;
+  25   1              SCL = 0;
+  26   1      }
+  27           
+  28          void I2CStop()
+  29          {
+  30   1              SCL = 0;
+  31   1              SDA = 0;
+  32   1              SCL = 1;
+  33   1              SDA = 1;
+  34   1      }
+  35           
+  36          void I2CAck()
+  37          {
+  38   1              SDA = 0;
+  39   1              SCL = 1;
+  40   1              SCL = 0;
+  41   1              SDA = 1;
+  42   1      }
+  43           
+  44          void I2CNak()
+  45          {
+  46   1              SDA = 1;
+  47   1              SCL = 1;
+  48   1              SCL = 0;
+  49   1              SDA = 1;
+  50   1      }
+  51          
+  52          unsigned char I2CSend(unsigned char Data)
+  53          {
+  54   1               unsigned char i, ack_bit;
+  55   1               for (i = 0; i < 8; i++) {
+C51 COMPILER V9.00   IIC_COMM                                                              06/14/2017 19:17:10 PAGE 2   
+
+  56   2                      if ((Data & 0x80) == 0)
+  57   2                              SDA = 0;
+  58   2                      else
+  59   2                              SDA = 1;
+  60   2                      SCL = 1;
+  61   2                      _nop_();
+  62   2                      _nop_();
+  63   2                      _nop_();
+  64   2                      SCL = 0;
+  65   2                      Data<<=1;
+  66   2               }
+  67   1               SDA = 1;
+  68   1               SCL = 1;
+  69   1               _nop_();
+  70   1               ack_bit =SDA;//;//(unsigned char) SDA;
+  71   1               SCL = 0;
+  72   1               //OEB=0x03;
+  73   1               return ack_bit;
+  74   1      }
+  75          unsigned char I2CRead()
+  76          {
+  77   1              unsigned char i, Data=0;
+  78   1              for (i = 0; i < 8; i++) {
+  79   2                      SCL = 1;
+  80   2                      if(SDA)
+  81   2                              Data |=1;
+  82   2                      if(i<7)
+  83   2                              Data<<=1;
+  84   2                      SCL = 0;
+  85   2              }
+  86   1              return Data;
+  87   1      }
+*** WARNING C316 IN LINE 87 OF iic_comm.c: unterminated conditionals
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    115    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
