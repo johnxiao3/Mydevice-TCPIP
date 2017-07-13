@@ -1,4 +1,4 @@
-C51 COMPILER V9.00   DEV_IO                                                                07/08/2017 18:49:39 PAGE 1   
+C51 COMPILER V9.00   DEV_IO                                                                07/13/2017 01:05:33 PAGE 1   
 
 
 C51 COMPILER V9.00, COMPILATION OF MODULE DEV_IO
@@ -19,182 +19,196 @@ line level    source
   10          #include "string.h"
   11          
   12          
-  13          code unsigned char at_mode[14]={'A','T','+','C','W','M','O','D','E','=','1',0x0D,0x0A,'\0'}; 
-  14          
+  13          
+  14          BYTE ScanKey();
   15          
-  16          code char Connect[133]=
-  17          {0x10,0x82,0x01,0x00,0x06,0x4d,0x51,0x49,0x73,0x64,0x70,0x03,0xc2,0x00,0x3c,0x00
-  18          ,0x24,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64,0x38,0x33,0x2d,0x31
-  19          ,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36,0x33,0x39,0x63,0x61
-  20          ,0x39,0x30,0x39,0x61,0x38,0x00,0x24,0x37,0x37,0x32,0x36,0x31,0x62,0x62,0x30,0x2d
-  21          ,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38,0x2d,0x30
-  22          ,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x00,0x28,0x36,0x65,0x63
-  23          ,0x64,0x63,0x37,0x34,0x31,0x39,0x39,0x64,0x34,0x62,0x34,0x33,0x64,0x37,0x63,0x30
-  24          ,0x31,0x63,0x34,0x63,0x36,0x34,0x30,0x31,0x36,0x32,0x62,0x37,0x31,0x61,0x62,0x35
-  25          ,0x30,0x61,0x37,0x37,0x63};      
-  26          
-  27          code char Subs[96]=
-  28          {0x82,0x5e,0x00,0x01,0x00,0x59,0x76,0x31,0x2f,0x37,0x37,0x32,0x36,0x31,0x62,0x62
-  29          ,0x30,0x2d,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38
-  30          ,0x2d,0x30,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x2f,0x74,0x68
-  31          ,0x69,0x6e,0x67,0x73,0x2f,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64
-  32          ,0x38,0x33,0x2d,0x31,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36
-  33          ,0x33,0x39,0x63,0x61,0x39,0x30,0x39,0x61,0x38,0x2f,0x63,0x6d,0x64,0x2f,0x32,0x00};
-  34          
-  35          code char Publish[93]=
-  36          {0x30,0x5d,0x00,0x5a,0x76,0x31,0x2f,0x37,0x37,0x32,0x36,0x31,0x62,0x62,0x30,0x2d
-  37          ,0x34,0x64,0x32,0x65,0x2d,0x31,0x31,0x65,0x37,0x2d,0x61,0x31,0x63,0x38,0x2d,0x30
-  38          ,0x33,0x61,0x33,0x31,0x30,0x62,0x30,0x37,0x62,0x62,0x32,0x2f,0x74,0x68,0x69,0x6e
-  39          ,0x67,0x73,0x2f,0x64,0x63,0x37,0x37,0x63,0x32,0x32,0x30,0x2d,0x34,0x64,0x38,0x33
-  40          ,0x2d,0x31,0x31,0x65,0x37,0x2d,0x39,0x30,0x64,0x63,0x2d,0x63,0x64,0x36,0x33,0x39
-  41          ,0x63,0x61,0x39,0x30,0x39,0x61,0x38,0x2f,0x64,0x61,0x74,0x61,0x2f};
-  42          
-  43          
-  44           
-  45          extern unsigned char temp_dataT[70];
-  46          extern unsigned char count;
-  47          unsigned char Lig=1;
-  48          unsigned char CountineCheck=0;
-  49          
-  50          void main(void)
-  51          {  
-  52   1              /*****************************************
-  53   1              * Write to slave device with
-  54   1              * slave address e.g. say 0x20
-  55   1              *****************************************/
-C51 COMPILER V9.00   DEV_IO                                                                07/08/2017 18:49:39 PAGE 2   
+  16           
+  17          extern unsigned char temp_dataT[70];
+  18          extern unsigned char count;
+  19          unsigned char Lig=1;
+  20          unsigned char CountineCheck=0;
+  21          
+  22          void main(void)
+  23          {  
+  24   1              /*****************************************
+  25   1              * Write to slave device with
+  26   1              * slave address e.g. say 0x20
+  27   1              *****************************************/
+  28   1              //unsigned char ack;
+  29   1              //MQTTClient_connectOptions pdata a;
+  30   1      
+  31   1              int len=0;
+  32   1              int i=0;
+  33   1              int Light1=0;
+  34   1      
+  35   1              OED=0xff;
+  36   1              OEB=0xff;
+  37   1              OEE=0x0f;
+  38   1              Delay(1000);
+  39   1              PD5=1;  //PD5 is the display
+  40   1              PD7=0;   //PD7 is channel 1; 0 is off; 1 is on;
+  41   1              LEDFlash();
+  42   1              
+  43   1              I2CInit();
+  44   1      
+  45   1              ssd1306_initalize();
+  46   1              ssd1306_clear();
+  47   1              ssd1306_printf("|   Mydevices   |  UDP    Mode  |   By ZY Xiao  |     2017-7    ");
+  48   1              Delay(5000);
+  49   1                         
+  50   1              Serial0_Init();
+  51   1      Restart:
+  52   1              Serial0_SendString("+++");
+  53   1              Delay(5000);
+  54   1              
+  55   1              ssd1306_initalize();
+C51 COMPILER V9.00   DEV_IO                                                                07/13/2017 01:05:33 PAGE 2   
 
-  56   1              //unsigned char ack;
-  57   1              //MQTTClient_connectOptions pdata a;
-  58   1      
-  59   1              int len=0;
-  60   1              MQTTHeader header = {0};
-  61   1              MQTTConnectFlags flags = {0};
-  62   1      
-  63   1              OED=0xff;
-  64   1              OEB=0xff;
-  65   1              OEE=0x0f;
-  66   1              Delay(1000);
-  67   1              PD5=1;  //PD5 is the display
-  68   1              PD7=0;   //PD7 is channel 1; 0 is off; 1 is on;
-  69   1              LEDFlash();
-  70   1              
-  71   1              I2CInit();
-  72   1      
-  73   1              ssd1306_initalize();
-  74   1              ssd1306_clear();
-  75   1              ssd1306_printf("|   Mydevices   |  TCP IP Mode  |   By ZY Xiao  |     2017-7    ");
-  76   1              Delay(5000);
-  77   1                         
-  78   1              Serial0_Init();
-  79   1      Restart:
-  80   1              Serial0_SendString("+++");
-  81   1              Delay(5000);
-  82   1              
-  83   1              ssd1306_initalize();
-  84   1              ssd1306_clear();
-  85   1              ssd1306_printf("|   Mydevices   |  TCP IP Mode  |  Reset Wifi   ");
-  86   1              Serial0_SendString("AT+RST");
-  87   1              Serial0_SendChar(0x0d);
-  88   1              Serial0_SendChar(0x0a);
-  89   1              Serial0_SendChar(0x00);
-  90   1              Delay(10000);                                           
-  91   1              ABCShow();
-*** WARNING C206 IN LINE 91 OF DEV_IO.C: 'ABCShow': missing function-prototype
-  92   1              Delay(10000);
-  93   1      
-  94   1      
-  95   1              ssd1306_initalize();
-  96   1              ssd1306_clear();
-  97   1              ssd1306_printf(" Connecting...");
-  98   1      Reconnect:
-  99   1              count=0;
- 100   1              Serial0_SendString("AT+CIPSTART=\"TCP\",\"192.168.2.3\",5000");
- 101   1              Serial0_SendChar(0x0d);
- 102   1              Serial0_SendChar(0x0a);
- 103   1              Serial0_SendChar(0x00);
- 104   1              Delay(10000);
- 105   1              //temp_dataT[0]=count;ABCShow();Delay(10000);
- 106   1              if(count==0x38) {count=0;goto Reconnect;}
- 107   1              //temp_dataT[0]=count;ABCShow();Delay(10000);
- 108   1              //if(count!=0x36) {count=0;goto Restart;}
- 109   1              //if count =0x37 no ip maybe restart the modern 
- 110   1              //count=0;
- 111   1              ssd1306_initalize();
- 112   1              ssd1306_clear();
- 113   1              ssd1306_printf("| Connected |");
- 114   1              Delay(5000);
- 115   1              
- 116   1              Serial0_SendString("AT+CIPMODE=1");
-C51 COMPILER V9.00   DEV_IO                                                                07/08/2017 18:49:39 PAGE 3   
+  56   1              ssd1306_clear();
+  57   1              ssd1306_printf("|   Mydevices   |  UDP    Mode  |  Reset Wifi   ");
+  58   1              Serial0_SendString("AT+RST");
+  59   1              Serial0_SendChar(0x0d);
+  60   1              Serial0_SendChar(0x0a);
+  61   1              Serial0_SendChar(0x00);
+  62   1              Delay(10000);                                           
+  63   1              ABCShow();
+*** WARNING C206 IN LINE 63 OF DEV_IO.C: 'ABCShow': missing function-prototype
+  64   1              Delay(5000);
+  65   1      
+  66   1              //ssd1306_initalize();
+  67   1              //ssd1306_clear();
+  68   1              //ssd1306_printf(" Connecting...");
+  69   1      Reconnect:
+  70   1              count=0;
+  71   1              /*Serial0_SendString("AT+GMR");
+  72   1              Serial0_SendChar(0x0d);
+  73   1              Serial0_SendChar(0x0a);
+  74   1              Serial0_SendChar(0x00);
+  75   1              Delay(5000);
+  76   1              ABCShow();
+  77   1              Delay(1000);      */
+  78   1      
+  79   1              
+  80   1      
+  81   1              /*Serial0_SendString("AT+CWQAP");
+  82   1              Serial0_SendChar(0x0d);
+  83   1              Serial0_SendChar(0x0a);
+  84   1              Serial0_SendChar(0x00);
+  85   1              Delay(5000);
+  86   1              ABCShow();
+  87   1              Delay(1000);
+  88   1      
+  89   1              Serial0_SendString("AT+CWMODE=3");
+  90   1              Serial0_SendChar(0x0d);
+  91   1              Serial0_SendChar(0x0a);
+  92   1              Serial0_SendChar(0x00);
+  93   1              Delay(5000);
+  94   1              ABCShow();
+  95   1              Delay(1000);
+  96   1      
+  97   1              Serial0_SendString("AT+CWJAP=\"zhiyong_yang\",\"26996014\"");
+  98   1              Serial0_SendChar(0x0d);
+  99   1              Serial0_SendChar(0x0a);
+ 100   1              Serial0_SendChar(0x00);
+ 101   1              Delay(20000);
+ 102   1              ABCShow();
+ 103   1              Delay(30000);
+ 104   1              ABCShow();        */
+ 105   1      
+ 106   1              //Serial0_SendString("AT+CWMODE_CUR=3");
+ 107   1              //Serial0_SendChar(0x0d);
+ 108   1              //Serial0_SendChar(0x0a);
+ 109   1              //Serial0_SendChar(0x00);
+ 110   1              //Delay(5000);
+ 111   1              //ssd1306_initalize();
+ 112   1              //ssd1306_clear();
+ 113   1              //ABCShow();
+ 114   1              //ssd1306_printf("| Connected |");
+ 115   1              //Delay(1000);
+ 116   1              
+C51 COMPILER V9.00   DEV_IO                                                                07/13/2017 01:05:33 PAGE 3   
 
- 117   1              Serial0_SendChar(0x0d);
- 118   1              Serial0_SendChar(0x0a);
- 119   1              Serial0_SendChar(0x00);
- 120   1              Delay(5000);
- 121   1              ABCShow();
- 122   1              count=0;
- 123   1              
- 124   1              Serial0_SendString("AT+CIPSEND");
- 125   1              Serial0_SendChar(0x0d);
- 126   1              Serial0_SendChar(0x0a);
- 127   1              Serial0_SendChar(0x00);
- 128   1              Delay(10000); 
- 129   1              if(count!=0x16) {count=0;goto Restart;}
- 130   1              //temp_dataT[0]=count;ABC1Show();Delay(30000);
- 131   1              count=0;
- 132   1      
- 133   1              //Delay(10000); 
- 134   1      
- 135   1              //Serial0_SendString("Hahah");
- 136   1              /*Serial0_SendString("AT+CWJAP=\"zhiyong_yang\",\"26996014\"");
- 137   1              Serial0_SendChar(0x0d);
- 138   1              Serial0_SendChar(0x0a);
- 139   1              Serial0_SendChar(0x00);*/
- 140   1                       
- 141   1              LEDFlash();
- 142   1              ssd1306_initalize();
- 143   1              ssd1306_clear();
- 144   1              ssd1306_printf("Waiting...");   
- 145   1              while(1){
- 146   2                      Delay(5000);
- 147   2                      if (count==2)
- 148   2                      {
- 149   3                              //ABC1Show();
- 150   3                              if (temp_dataT[0]==0x01)
- 151   3                              {
- 152   4                                      PD7=temp_dataT[1]&0x01;
- 153   4                                      ssd1306_initalize();
- 154   4                                      ssd1306_clear();
- 155   4                                      if (temp_dataT[1])
- 156   4                                              ssd1306_printf("Channel 1: ON");
- 157   4                                      else
- 158   4                                              ssd1306_printf("Channel 1: OFF");
- 159   4                              }
- 160   3                              if      (temp_dataT[0]==0x00) 
- 161   3                              {
- 162   4                                      Delay(10000);
- 163   4                                      goto Restart;
- 164   4                              }       
- 165   3                      }
- 166   2                      count=0;
- 167   2              }
- 168   1              //LEDKeyTest();
- 169   1      }
-*** WARNING C316 IN LINE 169 OF dev_io.c: unterminated conditionals
+ 117   1              
+ 118   1      
+ 119   1              //Serial0_SendString("AT+CIPSERVER=1,80");
+ 120   1              //Serial0_SendChar(0x0d);
+ 121   1              //Serial0_SendChar(0x0a);
+ 122   1              //Serial0_SendChar(0x00);
+ 123   1              //Delay(5000);
+ 124   1              //ABCShow();
+ 125   1              //Delay(1000);
+ 126   1              /*Serial0_SendString("AT+CIFSR");
+ 127   1              Serial0_SendChar(0x0d);
+ 128   1              Serial0_SendChar(0x0a);
+ 129   1              Serial0_SendChar(0x00);
+ 130   1              Delay(3000);
+ 131   1              ABCShow();
+ 132   1              Delay(10000);     */
+ 133   1      
+ 134   1              Serial0_SendString("AT+CIPMUX=1");
+ 135   1              Serial0_SendChar(0x0d);
+ 136   1              Serial0_SendChar(0x0a);
+ 137   1              Serial0_SendChar(0x00);
+ 138   1              Delay(5000);
+ 139   1              ABCShow();
+ 140   1              Delay(1000);
+ 141   1      
+ 142   1      
+ 143   1              Serial0_SendString("AT+CIPSTART=0,\"UDP\",\"192.168.2.3\",4445,4445,2");
+ 144   1              Serial0_SendChar(0x0d);
+ 145   1              Serial0_SendChar(0x0a);
+ 146   1              Serial0_SendChar(0x00);
+ 147   1              Delay(3000);
+ 148   1              ABCShow();
+ 149   1              Delay(1000);
+ 150   1      
+ 151   1              while(1){
+ 152   2                      for(i=0;i<100;i++)
+ 153   2                      {
+ 154   3                               if (ScanKey())
+ 155   3                               {
+ 156   4                                      PD7=~PD7;
+ 157   4                                      Light1=~Light1;
+ 158   4                                      if (Light1)
+ 159   4                                              ssd1306_printf("Channel 1: ON");
+ 160   4                                      else
+ 161   4                                              ssd1306_printf("Channel 1: OFF");
+ 162   4                                      Delay(500);
+ 163   4                               }
+ 164   3                               
+ 165   3                      }       
+ 166   2                      if (count==0x0f)
+ 167   2                      {
+ 168   3                              PD7=temp_dataT[count-1]&0x01;
+ 169   3                              ssd1306_initalize();
+ 170   3                              ssd1306_clear();
+ 171   3                              if (temp_dataT[count-1]-0x30)
+ 172   3                                      ssd1306_printf("Channel 1: ON");
+ 173   3                              else
+ 174   3                                      ssd1306_printf("Channel 1: OFF");
+ 175   3                              Light1=temp_dataT[count-1]-0x30;
+ 176   3                              count=0;
+ 177   3                              //temp_dataT[0]=count;ABC1Show();Delay(10000);
+ 178   3                      }
+C51 COMPILER V9.00   DEV_IO                                                                07/13/2017 01:05:33 PAGE 4   
+
+ 179   2              }
+ 180   1              //LEDKeyTest();
+ 181   1      }
+*** WARNING C280 IN LINE 51 OF DEV_IO.C: 'Restart': unreferenced label
+*** WARNING C280 IN LINE 69 OF DEV_IO.C: 'Reconnect': unreferenced label
+*** WARNING C316 IN LINE 181 OF dev_io.c: unterminated conditionals
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    428    ----
-   CONSTANT SIZE    =    595    ----
+   CODE SIZE        =    362    ----
+   CONSTANT SIZE    =    212    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
    DATA SIZE        =      2       6
-C51 COMPILER V9.00   DEV_IO                                                                07/08/2017 18:49:39 PAGE 4   
-
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----    ----
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)
