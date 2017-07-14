@@ -12,13 +12,13 @@
       <ToolsetName>MCS-51</ToolsetName>
       <TargetOption>
         <TargetCommonOption>
-          <Device>EZ-USB FX2LP (CY7C68XXX-X)</Device>
+          <Device>EZ-USB FX2 (CY7C68XXX)</Device>
           <Vendor>Cypress Semiconductor</Vendor>
-          <Cpu>IRAM(0-0xFF) IROM(0-0x3FFF) XRAM(0xE000-0xE1FF) CLOCK(48000000) MODDP2</Cpu>
+          <Cpu>IRAM(0-0xFF) IROM(0-0x1FFF) XRAM(0xE000-0xE1FF) CLOCK(48000000) MODDP2</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
           <StartupFile>"LIB\STARTUP.A51" ("Standard 8051 Startup Code")</StartupFile>
           <FlashDriverDll></FlashDriverDll>
-          <DeviceId>3787</DeviceId>
+          <DeviceId>3205</DeviceId>
           <RegisterFile>FX2REGS.H</RegisterFile>
           <MemoryEnv></MemoryEnv>
           <Cmp></Cmp>
@@ -253,7 +253,7 @@
               <IRO>
                 <Type>1</Type>
                 <StartAddress>0x0</StartAddress>
-                <Size>0x4000</Size>
+                <Size>0x2000</Size>
               </IRO>
               <IRA>
                 <Type>0</Type>
@@ -380,11 +380,6 @@
               <FileName>MQTTPacket.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\MQTTPacket.c</FilePath>
-            </File>
-            <File>
-              <FileName>MQTTConnectClient.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\MQTTConnectClient.c</FilePath>
             </File>
           </Files>
         </Group>
