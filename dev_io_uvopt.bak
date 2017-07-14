@@ -184,10 +184,10 @@
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>1</Focus>
-      <ColumnNumber>90</ColumnNumber>
+      <ColumnNumber>86</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>81</TopLine>
-      <CurrentLine>93</CurrentLine>
+      <TopLine>145</TopLine>
+      <CurrentLine>165</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\dev_io.c</PathWithFileName>
       <FilenameWithoutPath>dev_io.c</FilenameWithoutPath>
@@ -213,28 +213,14 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>2</FileNumber>
-      <FileType>1</FileType>
-      <tvExp>0</tvExp>
-      <Focus>0</Focus>
-      <ColumnNumber>85</ColumnNumber>
-      <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>55</TopLine>
-      <CurrentLine>55</CurrentLine>
-      <bDave2>0</bDave2>
-      <PathWithFileName>.\LED_Key.c</PathWithFileName>
-      <FilenameWithoutPath>LED_Key.c</FilenameWithoutPath>
-    </File>
-    <File>
-      <GroupNumber>1</GroupNumber>
       <FileNumber>3</FileNumber>
       <FileType>1</FileType>
       <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>102</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>16</CurrentLine>
+      <TopLine>45</TopLine>
+      <CurrentLine>45</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\iic_comm.c</PathWithFileName>
       <FilenameWithoutPath>iic_comm.c</FilenameWithoutPath>
@@ -245,10 +231,10 @@
       <FileType>1</FileType>
       <tvExp>1</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>24</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
       <TopLine>73</TopLine>
-      <CurrentLine>73</CurrentLine>
+      <CurrentLine>74</CurrentLine>
       <bDave2>0</bDave2>
       <PathWithFileName>.\ESP8266.c</PathWithFileName>
       <FilenameWithoutPath>ESP8266.c</FilenameWithoutPath>
@@ -283,17 +269,17 @@
     </File>
     <File>
       <GroupNumber>1</GroupNumber>
-      <FileNumber>7</FileNumber>
+      <FileNumber>0</FileNumber>
       <FileType>1</FileType>
-      <tvExp>1</tvExp>
+      <tvExp>0</tvExp>
       <Focus>0</Focus>
-      <ColumnNumber>3</ColumnNumber>
+      <ColumnNumber>0</ColumnNumber>
       <tvExpOptDlg>0</tvExpOptDlg>
-      <TopLine>1</TopLine>
-      <CurrentLine>1</CurrentLine>
+      <TopLine>7</TopLine>
+      <CurrentLine>23</CurrentLine>
       <bDave2>0</bDave2>
-      <PathWithFileName>.\MQTTPacket.c</PathWithFileName>
-      <FilenameWithoutPath>MQTTPacket.c</FilenameWithoutPath>
+      <PathWithFileName>.\LED_Key.c</PathWithFileName>
+      <FilenameWithoutPath>LED_Key.c</FilenameWithoutPath>
     </File>
   </Group>
 
@@ -429,7 +415,7 @@
 
   <AlienFiles>
     <PathWithFilename>E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Dev_io - iic\MQTTUnsubscribe.h</PathWithFilename>
-    <TopLine>4</TopLine>
+    <TopLine>1</TopLine>
     <CurrentLine>25</CurrentLine>
     <Constant>0</Constant>
     <WindowPosition>
@@ -1898,8 +1884,20 @@
     <ActiveMDIGroup>0</ActiveMDIGroup>
     <MDIGroup>
       <Size>100</Size>
-      <ActiveTab>4</ActiveTab>
+      <ActiveTab>6</ActiveTab>
       <Documents>
+        <Doc>
+          <Name>.\iic_comm.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>45</TopLine>
+          <CurrentLine>45</CurrentLine>
+        </Doc>
+        <Doc>
+          <Name>.\LED_Key.c</Name>
+          <ColumnNumber>0</ColumnNumber>
+          <TopLine>7</TopLine>
+          <CurrentLine>23</CurrentLine>
+        </Doc>
         <Doc>
           <Name>E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Dev_io - iic\MQTTConnectClient.c</Name>
           <ColumnNumber>0</ColumnNumber>
@@ -1920,15 +1918,15 @@
         </Doc>
         <Doc>
           <Name>.\ESP8266.c</Name>
-          <ColumnNumber>24</ColumnNumber>
+          <ColumnNumber>0</ColumnNumber>
           <TopLine>73</TopLine>
-          <CurrentLine>73</CurrentLine>
+          <CurrentLine>74</CurrentLine>
         </Doc>
         <Doc>
           <Name>.\dev_io.c</Name>
-          <ColumnNumber>90</ColumnNumber>
-          <TopLine>81</TopLine>
-          <CurrentLine>93</CurrentLine>
+          <ColumnNumber>86</ColumnNumber>
+          <TopLine>145</TopLine>
+          <CurrentLine>165</CurrentLine>
         </Doc>
         <Doc>
           <Name>SSD1306.H</Name>
@@ -1939,7 +1937,7 @@
         <Doc>
           <Name>E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Dev_io - iic\MQTTUnsubscribe.h</Name>
           <ColumnNumber>47</ColumnNumber>
-          <TopLine>4</TopLine>
+          <TopLine>1</TopLine>
           <CurrentLine>25</CurrentLine>
         </Doc>
         <Doc>
@@ -1971,18 +1969,6 @@
           <ColumnNumber>67</ColumnNumber>
           <TopLine>1</TopLine>
           <CurrentLine>9</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\LED_Key.c</Name>
-          <ColumnNumber>85</ColumnNumber>
-          <TopLine>55</TopLine>
-          <CurrentLine>55</CurrentLine>
-        </Doc>
-        <Doc>
-          <Name>.\iic_comm.c</Name>
-          <ColumnNumber>102</ColumnNumber>
-          <TopLine>1</TopLine>
-          <CurrentLine>16</CurrentLine>
         </Doc>
         <Doc>
           <Name>E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Dev_io - iic\MQTTCONNECT.H</Name>

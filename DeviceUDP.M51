@@ -1,4 +1,4 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        07/13/2017  01:05:33  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        07/13/2017  22:59:35  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  DeviceUDP (DEV_IO)
             XDATA   E606H     0001H     ABSOLUTE     
             XDATA   E607H     0001H     ABSOLUTE     
             XDATA   E608H     0001H     ABSOLUTE     
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 2
 
 
             XDATA   E609H     0001H     ABSOLUTE     
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  DeviceUDP (DEV_IO)
             XDATA   E654H     0001H     ABSOLUTE     
             XDATA   E655H     0001H     ABSOLUTE     
             XDATA   E656H     0001H     ABSOLUTE     
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 3
 
 
             XDATA   E657H     0001H     ABSOLUTE     
@@ -179,7 +179,7 @@ LINK MAP OF MODULE:  DeviceUDP (DEV_IO)
                     E69AH     0002H                  *** GAP ***
             XDATA   E69CH     0001H     ABSOLUTE     
             XDATA   E69DH     0001H     ABSOLUTE     
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 4
 
 
                     E69EH     0002H                  *** GAP ***
@@ -239,7 +239,7 @@ LINK MAP OF MODULE:  DeviceUDP (DEV_IO)
                     E6E5H     0005H                  *** GAP ***
             XDATA   E6EAH     0001H     ABSOLUTE     
             XDATA   E6EBH     0001H     ABSOLUTE     
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 5
 
 
             XDATA   E6ECH     0001H     ABSOLUTE     
@@ -299,7 +299,7 @@ LINK MAP OF MODULE:  DeviceUDP (DEV_IO)
             CODE    0EADH     0018H     UNIT         ?PR?_WRITEDATA?SSD1306
             CODE    0EC5H     0015H     UNIT         ?PR?LEDFLASH?LED_KEY
             CODE    0EDAH     0015H     UNIT         ?PR?_STRLEN?STRLEN
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 6
 
 
             CODE    0EEFH     0014H     UNIT         ?PR?_DELAY?LED_KEY
@@ -359,7 +359,7 @@ SEGMENT                                    DATA_GROUP
 
 ?PR?SSD1306_CLEAR?SSD1306                005BH    0002H
   +--> ?PR?_WRITECOMMAND?SSD1306
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 7
 
 
   +--> ?PR?_WRITEDATA?SSD1306
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:064BH         LINE#         32
   C:064FH         LINE#         33
   C:0653H         LINE#         35
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 8
 
 
   C:0656H         LINE#         36
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:076AH         LINE#         166
   C:076FH         LINE#         167
   C:076FH         LINE#         168
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 9
 
 
   C:0776H         LINE#         169
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:0F1CH         LINE#         33
   C:0F1EH         LINE#         34
   -------         ENDPROC       I2CSTOP
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 10
 
 
   -------         PROC          I2CACK
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:0E48H         LINE#         79
   C:0E4AH         LINE#         80
   C:0E4DH         LINE#         81
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 11
 
 
   C:0E50H         LINE#         82
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   -------         PROC          _SERIAL0_SENDSTRING1
   D:0060H         SYMBOL        temp
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 12
 
 
   D:0063H         SYMBOL        i
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:0C34H         LINE#         86
   C:0C3EH         LINE#         87
   C:0C42H         LINE#         102
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 13
 
 
   C:0C45H         LINE#         103
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   D:0067H         PUBLIC        m_pFramebuffer
   C:0B0EH         PUBLIC        ssd1306_initalize
   C:0C80H         PUBLIC        _ssd1306_printchar
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 14
 
 
   C:0E95H         PUBLIC        _writeCommand
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   -------         DO            
   D:005BH         SYMBOL        i
   -------         ENDDO         
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 15
 
 
   C:0D59H         LINE#         170
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:07F2H         LINE#         218
   C:080FH         LINE#         219
   C:0814H         LINE#         220
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 16
 
 
   C:0845H         LINE#         222
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   X:E6AAH         PUBLIC        EP8FIFOFLGS
   X:E6F8H         PUBLIC        DBUG
   X:E740H         PUBLIC        EP0BUF
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 17
 
 
   X:E6CBH         PUBLIC        FLOWSTB
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   X:E6FBH         PUBLIC        CT1
   X:E6C4H         PUBLIC        GPIFADRH
   X:E65BH         PUBLIC        NAKIRQ
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 18
 
 
   X:E624H         PUBLIC        EP6AUTOINLENH
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   X:E6A4H         PUBLIC        EP4CS
   X:E648H         PUBLIC        INPKTEND
   X:E657H         PUBLIC        EP8FIFOIRQ
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 19
 
 
   X:E6A5H         PUBLIC        EP6CS
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   C:0E2BH         LINE#         15
   C:0E39H         LINE#         16
   C:0E44H         LINE#         17
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 20
 
 
   -------         ENDPROC       DELAY1MS
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
   -------         ENDPROC       LEDFLASH
   -------         PROC          LEDKEYTEST
   -------         DO            
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 21
 
 
   D:0001H         SYMBOL        flag
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  DeviceUDP (DEV_IO)
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?I2CNAK?IIC_COMM
-BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  01:05:33  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22                                                      07/13/2017  22:59:35  PAGE 22
 
 
 

@@ -43,7 +43,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\</OutputDirectory>
-          <OutputName>dev_io</OutputName>
+          <OutputName>DeviceUDP</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -352,11 +352,6 @@
               <FilePath>.\dev_io.c</FilePath>
             </File>
             <File>
-              <FileName>LED_Key.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\LED_Key.c</FilePath>
-            </File>
-            <File>
               <FileName>iic_comm.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\iic_comm.c</FilePath>
@@ -377,9 +372,9 @@
               <FilePath>..\..\Target\Lib\LP\EZUSB.LIB</FilePath>
             </File>
             <File>
-              <FileName>MQTTPacket.c</FileName>
+              <FileName>LED_Key.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\MQTTPacket.c</FilePath>
+              <FilePath>.\LED_Key.c</FilePath>
             </File>
           </Files>
         </Group>

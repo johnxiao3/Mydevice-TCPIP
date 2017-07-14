@@ -1,0 +1,56 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+E:\Cypress\USB1\CY3684_EZ-USB_FX2LP_DVK\1.0\Firmware\Mydevice-TCPIP\dev_io.uvproj
+Project File Date:  07/13/2017
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling dev_io.c...
+DEV_IO.C(63): warning C206: 'ABCShow': missing function-prototype
+DEV_IO.C(51): warning C280: 'Restart': unreferenced label
+DEV_IO.C(69): warning C280: 'Reconnect': unreferenced label
+dev_io.c(181): warning C316: unterminated conditionals
+compiling iic_comm.c...
+iic_comm.c(87): warning C316: unterminated conditionals
+compiling ESP8266.c...
+ESP8266.C(74): warning C280: 'h': unreferenced local variable
+ESP8266.C(74): warning C280: 'l': unreferenced local variable
+ESP8266.C(122): warning C280: 'temp_data': unreferenced local variable
+ESP8266.C(122): warning C280: 'h': unreferenced local variable
+ESP8266.C(122): warning C280: 'l': unreferenced local variable
+ESP8266.c(147): warning C316: unterminated conditionals
+compiling ssd1306.c...
+SSD1306.C(196): warning C280: 'j': unreferenced local variable
+ssd1306.c(227): warning C316: unterminated conditionals
+compiling LED_Key.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CRESTART?IIC_COMM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CACK?IIC_COMM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CNAK?IIC_COMM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CREAD?IIC_COMM
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL0_SENDSTRING1?ESP8266
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?ABC1SHOW?ESP8266
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_SERIAL0_SENDINT?ESP8266
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?SSD1306_DRAW?SSD1306
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?LEDKEYTEST?LED_KEY
+Program Size: data=111.0 xdata=4473 code=3912
+creating hex file from "DeviceUDP"...
+User command #1: ..\..\Bin\hex2bix -i -f 0xC2 -o DeviceUDP.iic DeviceUDP.hex
+Intel Hex file to EZ-USB Binary file conversion utility
+Copyright (c) 2012-2013, Cypress Semiconductor Inc.
+3941 Bytes written.
+Total Code Bytes = 3912
+Conversion completed successfully.
+"DeviceUDP" - 0 Error(s), 22 Warning(s).
